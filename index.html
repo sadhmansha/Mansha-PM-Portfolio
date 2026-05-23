@@ -706,7 +706,12 @@ score 0-100: 0=very bad idea, 100=excellent idea. Most decisions are 30-70. Be c
   try{
     const r = await fetch('https://project-ne2ae.vercel.app/api/analyze', {
   method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
+  headers:{
+  'Content-Type':'application/json',
+  'x-api-key':'YOUR_KEY_HERE',
+  'anthropic-version':'2023-06-01',
+  'anthropic-dangerous-direct-browser-access':'true'
+},
   body: JSON.stringify({ prompt: prompt })
 });
     const data=await r.json();
