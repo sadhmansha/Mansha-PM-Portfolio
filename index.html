@@ -704,7 +704,11 @@ Reply ONLY with valid JSON, no markdown, no backticks, nothing else:
 score 0-100: 0=very bad idea, 100=excellent idea. Most decisions are 30-70. Be calibrated.`;
 
   try{
-    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,messages:[{role:'user',content:prompt}]})});
+    const r = await fetch('https://project-ne2ae.vercel.app/api/analyze', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ prompt: prompt })
+});
     const data=await r.json();
     const raw=data.content.map(b=>b.text||'').join('');
     const p=JSON.parse(raw.replace(/```json|```/g,'').trim());
