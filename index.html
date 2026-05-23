@@ -526,7 +526,8 @@ score 0-100: 0=very bad idea, 100=excellent idea. Most decisions are 30-70. Be c
       })
     });
     const data=await r.json();
-    const raw=data.content.map(b=>b.text||'').join('');
+    if(!data.content) throw new Error(data.error?.message||JSON.stringify(data));
+const raw=data.content.map(b=>b.text||'').join('');
     const p=JSON.parse(raw.replace(/```json|```/g,'').trim());
     const vc={YES:'yes',NO:'no',MAYBE:'maybe'};
     const vt={YES:'Looks like a go',NO:'Worth pausing on',MAYBE:'It depends'};
