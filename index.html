@@ -30,8 +30,8 @@
     .nav-links li button.active { color: var(--accent); font-weight: 500; }
 
     /* PAGE SYSTEM */
-    .page { display: none; min-height: calc(100vh - 58px); padding-top: 58px; opacity: 0; transition: opacity 0.3s ease; }
-    .page.active { display: block; opacity: 1; }
+    .page { display: none; min-height: calc(100vh - 58px); padding-top: 58px; }
+    .page.active { opacity: 1; }
     .page-inner { max-width: 820px; margin: 0 auto; padding: 4rem 2rem 5rem; }
     .page-inner.wide { max-width: 980px; }
 
@@ -194,8 +194,7 @@
 
 
     /* NEST SAFELY PAGE */
-    #page-nest { padding-top: 58px; display: none; flex-direction: column; }
-    #page-nest.active { display: flex; }
+    #page-nest { flex-direction: column; }
     .nest-wrap { display: flex; flex-direction: column; height: calc(100vh - 58px); }
     .nest-topbar { display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.75rem; background: var(--accent-bg); border-bottom: 1px solid var(--accent-border); flex-shrink: 0; }
     .nest-topbar-left { display: flex; align-items: center; gap: 1rem; }
@@ -619,41 +618,53 @@
 
 <script>
 // PAGE ROUTING
+var VALID_PAGES = ['home','profile','tool','ai','contact','nest'];
+
 function showPage(name) {
-  document.querySelectorAll('.page').forEach(p => { p.classList.remove('active'); p.style.opacity = 0; });
-  document.querySelectorAll('.nav-links button').forEach(b => b.classList.remove('active'));
-  const page = document.getElementById('page-' + name);
+  // hide all pages
+  document.querySelectorAll('.page').forEach(function(p) {
+    p.classList.remove('active', 'page-visible');
+    p.style.display = 'none';
+  });
+  // deactivate all nav buttons
+  document.querySelectorAll('.nav-links button').forEach(function(b) {
+    b.classList.remove('active');
+  });
+  // show target page
+  var page = document.getElementById('page-' + name);
   if (page) {
+    page.style.display = (name === 'nest') ? 'flex' : 'block';
+    // force reflow then fade in
+    page.offsetHeight;
     page.classList.add('active');
-    setTimeout(() => { page.style.opacity = 1; }, 10);
     window.scrollTo(0, 0);
   }
-  const navBtn = document.getElementById('nav-' + name);
+  // highlight nav button
+  var navBtn = document.getElementById('nav-' + name);
   if (navBtn) navBtn.classList.add('active');
-  window.location.hash = name === 'home' ? '' : name;
+  // update URL hash
+  window.location.hash = (name === 'home') ? '' : name;
 }
 
 // PROFILE SUB-TABS
 function switchPtab(name) {
-  document.querySelectorAll('.ptab-panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.ptab').forEach(b => b.classList.remove('active'));
-  const panel = document.getElementById('ptabpanel-' + name);
-  const btn = document.getElementById('ptab-' + name);
+  document.querySelectorAll('.ptab-panel').forEach(function(p) { p.classList.remove('active'); });
+  document.querySelectorAll('.ptab').forEach(function(b) { b.classList.remove('active'); });
+  var panel = document.getElementById('ptabpanel-' + name);
+  var btn = document.getElementById('ptab-' + name);
   if (panel) panel.classList.add('active');
   if (btn) btn.classList.add('active');
 }
 
 // HASH ROUTING
-window.addEventListener('load', () => {
-  const hash = window.location.hash.replace('#','');
-  const valid = ['home','profile','tool','ai','contact'];
-  if (hash && valid.includes(hash)) showPage(hash);
+window.addEventListener('load', function() {
+  var hash = window.location.hash.replace('#','');
+  if (hash && VALID_PAGES.indexOf(hash) !== -1) showPage(hash);
   else showPage('home');
 });
-window.addEventListener('hashchange', () => {
-  const hash = window.location.hash.replace('#','');
-  const valid = ['home','profile','tool','ai','contact'];
-  if (hash && valid.includes(hash)) showPage(hash);
+window.addEventListener('hashchange', function() {
+  var hash = window.location.hash.replace('#','');
+  if (hash && VALID_PAGES.indexOf(hash) !== -1) showPage(hash);
   else showPage('home');
 });
 
