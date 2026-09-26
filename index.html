@@ -193,30 +193,106 @@
     .contact-page-intro { color: var(--muted); font-size: 0.9rem; max-width: 460px; margin-bottom: 2rem; line-height: 1.8; }
 
 
-    /* NEST SAFELY PAGE */
-    #page-nest { flex-direction: column; }
-    .nest-wrap { display: flex; flex-direction: column; height: calc(100vh - 58px); }
-    .nest-topbar { display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.75rem; background: var(--accent-bg); border-bottom: 1px solid var(--accent-border); flex-shrink: 0; }
-    .nest-topbar-left { display: flex; align-items: center; gap: 1rem; }
-    .nest-badge { font-family: var(--font-display); font-size: 1rem; font-weight: 400; color: var(--charcoal); }
-    .nest-desc { font-size: 0.8rem; color: var(--muted); }
-    .nest-open-btn { font-size: 0.8rem; padding: 0.4rem 1rem; flex-shrink: 0; }
-    #nest-frame { flex: 1; width: 100%; border: none; background: var(--cream); }
-    .nest-blocked { display: none; flex: 1; align-items: center; justify-content: center; background: var(--cream); }
-    .nest-blocked-inner { text-align: center; max-width: 380px; padding: 2rem; }
-    .nest-blocked-inner h3 { font-family: var(--font-display); font-size: 1.375rem; font-weight: 300; margin-bottom: 0.75rem; color: var(--charcoal); }
-    .nest-blocked-inner p { font-size: 0.9rem; color: var(--muted); line-height: 1.75; }
-    @media (max-width: 600px) { .nest-desc { display: none; } .nest-topbar { padding: 0.6rem 1rem; } }
 
 
-    /* APPS DROPDOWN */
-    .nav-dropdown { position: relative; }
-    .nav-apps-btn { font-family: var(--font-body); font-size: 0.8125rem; color: var(--muted); background: none; border: none; cursor: pointer; padding: 0.5rem 0.9rem; border-radius: 8px; transition: all 0.18s; font-weight: 400; }
-    .nav-apps-btn:hover, .nav-apps-btn.active { color: var(--accent); font-weight: 500; background: rgba(26,23,20,0.05); }
-    .apps-menu { display: none; position: absolute; top: calc(100% + 8px); right: 0; background: var(--white); border: 1px solid var(--border-strong); border-radius: 12px; padding: 0.375rem; min-width: 200px; box-shadow: 0 8px 24px rgba(26,23,20,0.1); z-index: 200; }
-    .apps-menu.open { display: block; }
-    .apps-menu button { display: block; width: 100%; text-align: left; font-family: var(--font-body); font-size: 0.8375rem; color: var(--charcoal-mid); background: none; border: none; cursor: pointer; padding: 0.6rem 0.875rem; border-radius: 8px; transition: background 0.15s; font-weight: 400; }
-    .apps-menu button:hover { background: var(--accent-bg); color: var(--accent); }
+
+
+    /* ── NEST SAFELY ── */
+    #page-nest { flex-direction: column; background: #EDEAE3; }
+    .ns-shell { display: flex; flex-direction: column; min-height: calc(100vh - 58px); background: #EDEAE3; }
+    .ns-header { text-align: center; padding: 2rem 1.5rem 1rem; }
+    .ns-logo-wrap { display: flex; align-items: center; justify-content: center; gap: 0.75rem; margin-bottom: 0.375rem; }
+    .ns-logo-icon { width: 42px; height: 42px; border-radius: 50%; background: #2A3D28; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+    .ns-logo-name { font-family: var(--font-display); font-size: 1.6rem; font-weight: 400; color: #1C2B1A; }
+    .ns-tagline { font-size: 0.875rem; color: #7A7568; }
+    .ns-back { background: none; border: none; cursor: pointer; font-size: 0.875rem; color: #7A7568; padding: 0 0 1.25rem; display: flex; align-items: center; gap: 0.375rem; font-family: var(--font-body); transition: color 0.18s; }
+    .ns-back:hover { color: #1C2B1A; }
+    .ns-screen { display: none; flex-direction: column; max-width: 580px; width: 100%; margin: 0 auto; padding: 1.25rem 1.5rem 3.5rem; }
+    .ns-screen.active { display: flex; }
+    .ns-screen-title { font-family: var(--font-display); font-size: 1.75rem; font-weight: 400; color: #1C2B1A; text-align: center; margin-bottom: 0.5rem; }
+    .ns-screen-sub { font-size: 0.875rem; color: #7A7568; text-align: center; margin-bottom: 2rem; line-height: 1.7; }
+
+    /* METHOD CARDS */
+    .ns-method-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.875rem; margin-bottom: 1.5rem; }
+    .ns-method-card { background: #FAF8F4; border: 1.5px solid #D8D4CC; border-radius: 16px; padding: 1.5rem 1.25rem; cursor: pointer; transition: all 0.2s; text-align: left; font-family: var(--font-body); }
+    .ns-method-card:hover { border-color: #2A3D28; box-shadow: 0 4px 14px rgba(42,61,40,0.1); }
+    .ns-method-selected { border-color: #2A3D28 !important; background: #EEF2EC !important; }
+    .ns-method-icon { font-size: 1.25rem; margin-bottom: 0.625rem; }
+    .ns-method-name { font-size: 0.9375rem; font-weight: 600; color: #1C2B1A; margin-bottom: 0.375rem; }
+    .ns-method-desc { font-size: 0.8rem; color: #7A7568; line-height: 1.6; margin-bottom: 0.75rem; }
+    .ns-method-tag { font-size: 0.7rem; font-weight: 600; }
+    .green-tag { color: #2A3D28; }
+    .amber-tag { color: #B06A20; }
+
+    /* BUDGET REVEAL */
+    .ns-budget-reveal { display: none; background: #FAF8F4; border: 1px solid #D8D4CC; border-radius: 14px; padding: 1.375rem 1.5rem; animation: fadeSlide 0.25s ease; }
+    @keyframes fadeSlide { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+    .ns-reveal-label { font-size: 0.9375rem; font-weight: 600; color: #1C2B1A; margin-bottom: 0.2rem; }
+    .ns-reveal-sub { font-size: 0.8rem; color: #7A7568; margin-bottom: 1.125rem; }
+    .ns-tier-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 0.625rem; margin-bottom: 1.125rem; }
+    .ns-tier-btn { background: #EDEAE3; border: 1.5px solid #D8D4CC; border-radius: 10px; padding: 0.875rem 0.5rem; cursor: pointer; font-family: var(--font-body); text-align: center; transition: all 0.18s; display: flex; flex-direction: column; gap: 0.2rem; }
+    .ns-tier-btn:hover { border-color: #2A3D28; }
+    .ns-tier-selected { border-color: #2A3D28 !important; background: #EEF2EC !important; }
+    .ns-tier-amt { font-size: 0.9rem; font-weight: 700; color: #1C2B1A; }
+    .ns-tier-lbl { font-size: 0.7rem; color: #7A7568; }
+
+    /* BUTTONS */
+    .ns-gen-btn { width: 100%; padding: 0.9375rem; border-radius: 100px; border: none; font-family: var(--font-display); font-size: 0.9375rem; cursor: pointer; transition: all 0.2s; letter-spacing: 0.01em; }
+    .ns-gen-ready { background: #1C2B1A; color: #F5F3EE; }
+    .ns-gen-ready:hover { background: #2A3D28; }
+    .ns-gen-disabled { background: #D8D4CC; color: #A09890; cursor: not-allowed; pointer-events: none; }
+    .ns-gen-loading { background: #1C2B1A; color: #F5F3EE; opacity: 0.7; cursor: not-allowed; pointer-events: none; }
+
+    /* WIZARD */
+    .ns-progress { display: flex; gap: 0.375rem; margin-bottom: 1.75rem; }
+    .ns-dot { height: 4px; border-radius: 100px; flex: 1; background: #D8D4CC; transition: background 0.3s; }
+    .ns-dot-done { background: #2A3D28; }
+    .ns-step-label { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: #B06A20; font-weight: 600; margin-bottom: 0.375rem; }
+    .ns-step-q { font-family: var(--font-display); font-size: 1.5rem; font-weight: 400; color: #1C2B1A; margin-bottom: 0.375rem; line-height: 1.25; }
+    .ns-step-hint { font-size: 0.8375rem; color: #7A7568; margin-bottom: 1.25rem; line-height: 1.65; }
+    .ns-options { display: flex; flex-direction: column; gap: 0.5rem; }
+    .ns-opt { background: #FAF8F4; border: 1.5px solid #D8D4CC; border-radius: 12px; padding: 0.875rem 1rem; cursor: pointer; text-align: left; font-family: var(--font-body); font-size: 0.9rem; color: #1C2B1A; transition: all 0.18s; font-weight: 500; }
+    .ns-opt:hover { border-color: #2A3D28; background: #EEF2EC; }
+    .ns-opt-selected { border-color: #2A3D28 !important; background: #EEF2EC !important; }
+    .ns-opt-sub { font-size: 0.775rem; color: #7A7568; font-weight: 400; margin-top: 0.175rem; }
+
+    /* RESULTS */
+    .ns-result-intro { background: #EEF2EC; border: 1px solid #C2D4BE; border-radius: 12px; padding: 1.125rem 1.375rem; margin-bottom: 1.5rem; }
+    .ns-result-intro p { font-size: 0.875rem; color: #2A3D28; line-height: 1.75; }
+    .ns-category { margin-bottom: 1.5rem; }
+    .ns-category-title { font-size: 0.675rem; letter-spacing: 0.12em; text-transform: uppercase; color: #7A7568; font-weight: 600; margin-bottom: 0.625rem; padding-bottom: 0.5rem; border-bottom: 1px solid #D8D4CC; }
+    .ns-item { display: flex; align-items: flex-start; gap: 0.875rem; padding: 0.75rem 0; border-bottom: 1px solid #E8E5DE; }
+    .ns-item:last-child { border-bottom: none; }
+    .ns-item-safe { width: 18px; height: 18px; border-radius: 50%; background: #EEF2EC; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.2rem; font-size: 0.6rem; color: #2A3D28; }
+    .ns-item-body { flex: 1; }
+    .ns-item-name { font-size: 0.9rem; font-weight: 600; color: #1C2B1A; margin-bottom: 0.15rem; }
+    .ns-item-why { font-size: 0.8rem; color: #7A7568; line-height: 1.6; }
+    .ns-item-swap { font-size: 0.75rem; color: #B06A20; margin-top: 0.35rem; background: #FDF3E8; padding: 0.25rem 0.6rem; border-radius: 6px; display: inline-block; }
+    .ns-item-price { font-size: 0.8rem; color: #2A3D28; font-weight: 600; white-space: nowrap; margin-top: 0.2rem; }
+
+    /* ADD ITEM */
+    .ns-add-wrap { margin-top: 1.75rem; padding-top: 1.5rem; border-top: 1px solid #D8D4CC; }
+    .ns-add-label { font-size: 0.8125rem; font-weight: 600; color: #1C2B1A; margin-bottom: 0.625rem; }
+    .ns-add-row { display: flex; gap: 0.625rem; }
+    .ns-add-input { flex: 1; font-family: var(--font-body); font-size: 0.875rem; color: #1C2B1A; background: #FAF8F4; border: 1.5px solid #D8D4CC; border-radius: 100px; padding: 0.625rem 1rem; outline: none; transition: border-color 0.18s; }
+    .ns-add-input:focus { border-color: #2A3D28; }
+    .ns-add-btn { background: #1C2B1A; color: #F5F3EE; border: none; border-radius: 100px; padding: 0.625rem 1.25rem; font-family: var(--font-body); font-size: 0.875rem; font-weight: 500; cursor: pointer; transition: background 0.18s; white-space: nowrap; }
+    .ns-add-btn:hover { background: #2A3D28; }
+    .ns-restart-btn { margin-top: 1.5rem; width: 100%; padding: 0.875rem; border-radius: 100px; border: 1.5px solid #D8D4CC; background: transparent; font-family: var(--font-body); font-size: 0.875rem; color: #7A7568; cursor: pointer; transition: all 0.18s; }
+    .ns-restart-btn:hover { border-color: #2A3D28; color: #1C2B1A; }
+
+    /* MODAL */
+    .ns-modal-overlay { position: fixed; inset: 0; background: rgba(28,43,26,0.45); z-index: 500; align-items: center; justify-content: center; }
+    .ns-modal-box { background: #FAF8F4; border-radius: 20px; padding: 2rem 1.75rem; max-width: 340px; width: 90%; text-align: center; }
+    .ns-modal-icon { font-size: 1.75rem; margin-bottom: 0.75rem; }
+    .ns-modal-title { font-family: var(--font-display); font-size: 1.25rem; font-weight: 400; color: #1C2B1A; margin-bottom: 0.5rem; }
+    .ns-modal-body { font-size: 0.875rem; color: #7A7568; line-height: 1.65; margin-bottom: 1.5rem; }
+    .ns-modal-btns { display: flex; gap: 0.75rem; }
+    .ns-modal-cancel { flex: 1; padding: 0.75rem; border-radius: 100px; border: 1.5px solid #D8D4CC; background: transparent; font-family: var(--font-body); font-size: 0.875rem; color: #7A7568; cursor: pointer; }
+    .ns-modal-cancel:hover { border-color: #2A3D28; color: #1C2B1A; }
+    .ns-modal-confirm { flex: 1; padding: 0.75rem; border-radius: 100px; border: none; background: #1C2B1A; font-family: var(--font-body); font-size: 0.875rem; color: #F5F3EE; cursor: pointer; }
+    .ns-modal-confirm:hover { background: #2A3D28; }
+    @media (max-width: 600px) { .ns-method-grid { grid-template-columns: 1fr; } .ns-tier-row { grid-template-columns: 1fr; } }
 
     /* RESPONSIVE */
     @media (max-width: 700px) {
@@ -259,8 +335,8 @@
     <p class="hero-sub">I turn complex problems into products people love — with a financial foundation most PMs don't have. Currently a Senior PM at Northwell Health focused on data and interoperability, shipping AI tools, and learning in public.</p>
     <div class="ctas">
       <a href="https://linkedin.com/in/manshasadh" target="_blank" class="btn btn-primary">View LinkedIn ↗</a>
-      <button class="btn btn-secondary" onclick="showPage('tool')">Try my tool</button>
       <button class="btn btn-secondary" onclick="showPage('profile'); switchPtab('work')">See my work</button>
+      <button class="btn btn-secondary" onclick="showPage('profile'); switchPtab('about')">About me</button>
     </div>
     <div class="hero-nav-grid">
       <div class="hero-nav-card" onclick="showPage('profile'); switchPtab('about')">
@@ -303,9 +379,9 @@
       <h2 class="ptab-title">The story <em>so far</em></h2>
       <div class="about-grid">
         <div class="about-body">
-          <p>I started my career at <strong>KPMG</strong> as a Certified Public Accountant — learning to see every business through the lens of numbers, risk, and consequence. That rigor shapes everything I build.</p>
-          <p>I pivoted into tech and product, bringing something most PMs don't have: genuine <strong>financial depth</strong>. I've shipped across proptech at <strong>Bowery Valuation</strong>, programmatic advertising at <strong>FreeWheel</strong> (Comcast), healthcare ad tech at <strong>IQVIA</strong>, and currently drive data and interoperability product strategy at <strong>Northwell Health</strong> — New York's largest health system.</p>
-          <p>Now I'm exploring <strong>AI, LLMs, and agents</strong> — building tools that make complex things simple, and documenting what I learn along the way. This portfolio is both a resume and a live experiment.</p>
+          <p>I started out as a <strong>CPA at KPMG</strong> — audit, financial reporting, and learning how businesses actually work from the inside. That background gave me something genuinely rare in product: I can read a P&L, spot a risk, and understand what a stakeholder really means when they talk about ROI.</p>
+          <p>From there I moved into product management and haven't looked back. I've worked across proptech at <strong>Bowery Valuation</strong>, ad tech at <strong>FreeWheel</strong> (Comcast), healthcare ad tech at <strong>IQVIA</strong>, and now I'm a Senior PM at <strong>Northwell Health</strong> — New York's largest health system — focused on data and interoperability.</p>
+          <p>On the side I've been teaching myself AI and LLMs by actually building things. The tools on this site are real projects, not demos. I'm figuring it out as I go and trying to be honest about that.</p>
           <div class="skills-wrap">
             <span class="skill-chip">Product Strategy</span>
             <span class="skill-chip">Roadmapping</span>
@@ -604,34 +680,295 @@
 </div>
 
 
-<!-- NEST SAFELY -->
+
+<!-- NEST SAFELY (Native) -->
 <div class="page" id="page-nest">
-  <div class="nest-wrap">
-    <div class="nest-topbar">
-      <div class="nest-topbar-left">
-        <span class="nest-badge">🌿 Nest Safely</span>
-        <span class="nest-desc">A calm, gentle look at your baby registry — built by Mansha Sadh</span>
+  <div class="ns-shell">
+
+    <div class="ns-header">
+      <div class="ns-logo-wrap">
+        <div class="ns-logo-icon">🛡️</div>
+        <span class="ns-logo-name">NestSafely</span>
       </div>
-      <a href="https://nestsafely-app-updat-xu1s.bolt.host" target="_blank" class="btn btn-secondary nest-open-btn">Open full screen ↗</a>
+      <p class="ns-tagline">A calm, gentle look at your baby registry</p>
     </div>
-    <iframe
-      id="nest-frame"
-      src="https://nestsafely-app-updat-xu1s.bolt.host"
-      title="Nest Safely App"
-      allow="clipboard-write"
-    ></iframe>
-    <div class="nest-blocked" id="nest-blocked">
-      <div class="nest-blocked-inner">
-        <div style="font-size:2rem;margin-bottom:1rem;">🌿</div>
-        <h3>Nest Safely can't be embedded here</h3>
-        <p>The app is hosted on Bolt which prevents direct embedding — but you can open it in a new tab. It works great on mobile too!</p>
-        <a href="https://nestsafely-app-updat-xu1s.bolt.host" target="_blank" class="btn btn-primary" style="margin-top:1.25rem;">Open Nest Safely ↗</a>
+
+    <!-- SCREEN 1: CHOOSE METHOD -->
+    <div class="ns-screen active" id="ns-s1">
+      <h2 class="ns-screen-title">Choose How to Build Your Registry</h2>
+      <p class="ns-screen-sub">Select the method that works best for you. You can always adjust items later.</p>
+
+      <div class="ns-method-grid">
+        <button class="ns-method-card" id="mc-budget" onclick="nsSelectMethod('budget')">
+          <div class="ns-method-icon">💰</div>
+          <div class="ns-method-name">Budget-Tiered Blueprint</div>
+          <div class="ns-method-desc">Pick a max budget and we'll auto-generate a safety-verified starter list scaled to your cap.</div>
+          <div class="ns-method-tag green-tag">✦ One-click setup</div>
+        </button>
+        <button class="ns-method-card" id="mc-guided" onclick="nsSelectMethod('guided')">
+          <div class="ns-method-icon">✨</div>
+          <div class="ns-method-name">Guided Step-by-Step</div>
+          <div class="ns-method-desc">Answer 4 quick questions about your lifestyle and we'll build a fully personalized list.</div>
+          <div class="ns-method-tag amber-tag">≡ 4-step wizard</div>
+        </button>
+      </div>
+
+      <!-- Budget tier reveal (only shown when budget selected) -->
+      <div class="ns-budget-reveal" id="ns-budget-reveal">
+        <p class="ns-reveal-label">Select your budget tier</p>
+        <p class="ns-reveal-sub">We'll generate a list scaled to this cap.</p>
+        <div class="ns-tier-row">
+          <button class="ns-tier-btn" id="tier-1000" onclick="nsSelectTier('$1,000 Essential','1000')">
+            <span class="ns-tier-amt">$1,000</span>
+            <span class="ns-tier-lbl">Essential</span>
+          </button>
+          <button class="ns-tier-btn" id="tier-2500" onclick="nsSelectTier('$2,500 Comprehensive','2500')">
+            <span class="ns-tier-amt">$2,500</span>
+            <span class="ns-tier-lbl">Comprehensive</span>
+          </button>
+          <button class="ns-tier-btn" id="tier-unlimited" onclick="nsSelectTier('Unlimited Premium','unlimited')">
+            <span class="ns-tier-amt">No limit</span>
+            <span class="ns-tier-lbl">Premium</span>
+          </button>
+        </div>
+        <button class="ns-gen-btn ns-gen-disabled" id="ns-budget-btn" onclick="nsGenerateBudget()">Generate My Registry →</button>
       </div>
     </div>
+
+    <!-- SCREEN 2: GUIDED WIZARD -->
+    <div class="ns-screen" id="ns-s2">
+      <button class="ns-back" onclick="nsGoTo(1)">← Back</button>
+      <div class="ns-progress" id="ns-progress">
+        <div class="ns-dot" id="dot-0"></div>
+        <div class="ns-dot" id="dot-1"></div>
+        <div class="ns-dot" id="dot-2"></div>
+        <div class="ns-dot" id="dot-3"></div>
+      </div>
+      <div id="ns-wizard-q"></div>
+      <button class="ns-gen-btn ns-gen-disabled" id="ns-guided-btn" style="margin-top:1.5rem;" onclick="nsGenerateGuided()">Generate My Registry →</button>
+    </div>
+
+    <!-- SCREEN 3: RESULTS -->
+    <div class="ns-screen" id="ns-s3">
+      <button class="ns-back" onclick="nsRestart()">← Start over</button>
+      <h2 class="ns-screen-title" style="text-align:center;margin-bottom:0.375rem;">Your registry</h2>
+      <p class="ns-screen-sub" id="ns-result-sub"></p>
+      <div class="ns-result-intro"><p id="ns-result-intro-text"></p></div>
+      <div id="ns-result-body"></div>
+
+      <!-- Add custom item -->
+      <div class="ns-add-wrap">
+        <p class="ns-add-label">Want to add something?</p>
+        <div class="ns-add-row">
+          <input type="text" id="ns-add-input" placeholder="e.g. Ergobaby Omni 360 carrier" class="ns-add-input" />
+          <button class="ns-add-btn" onclick="nsAddItem()">Add</button>
+        </div>
+      </div>
+
+      <button class="ns-restart-btn" onclick="nsRestart()">Start a new registry</button>
+    </div>
+
+    <!-- DUPLICATE CONFIRM MODAL -->
+    <div class="ns-modal-overlay" id="ns-modal" style="display:none;">
+      <div class="ns-modal-box">
+        <p class="ns-modal-icon">⚠️</p>
+        <h3 class="ns-modal-title">Already on your registry</h3>
+        <p class="ns-modal-body">Are you sure? This item already exists on your registry.</p>
+        <div class="ns-modal-btns">
+          <button class="ns-modal-cancel" onclick="nsDismissModal()">Cancel</button>
+          <button class="ns-modal-confirm" onclick="nsConfirmAdd()">Add Anyway</button>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
+
 <script>
+
+
+// ── NEST SAFELY ──
+var nsState = { method: null, budget: null, budgetId: null, answers: {}, step: 0, pendingItem: null };
+var nsRegistryItems = [];
+
+var nsQuestions = [
+  { label: 'Step 1 of 4', q: 'Where will your baby sleep?', hint: 'This helps us recommend the right sleep setup for your space.', options: [{ text: 'Own nursery room', sub: 'Dedicated space, full setup' }, { text: 'Shared bedroom with us', sub: 'Space-saving solutions matter' }, { text: 'Open plan / studio', sub: 'Compact and flexible' }, { text: 'Not sure yet', sub: "We'll cover the bases" }] },
+  { label: 'Step 2 of 4', q: "What's your living situation?", hint: 'Stairs, outdoor space, and square footage all shape what you need.', options: [{ text: 'Apartment or condo', sub: 'Compact living, possibly no elevator' }, { text: 'House with a yard', sub: 'More space, outdoor options open up' }, { text: 'Townhouse or multi-floor', sub: 'Stairs are a real factor' }, { text: 'Still figuring it out', sub: "We'll keep recommendations flexible" }] },
+  { label: 'Step 3 of 4', q: 'Feeding plan?', hint: 'No judgment at all — this just helps us tailor the feeding section.', options: [{ text: 'Breastfeeding', sub: 'Pump, nursing pillow, storage' }, { text: 'Formula feeding', sub: 'Bottles, sterilizer, prep machine' }, { text: 'Combination', sub: "Both — we'll include everything" }, { text: 'Undecided', sub: "We'll include options for both" }] },
+  { label: 'Step 4 of 4', q: 'What matters most to you?', hint: "Pick the priority that resonates — we'll weight your list accordingly.", options: [{ text: 'Safety above everything', sub: 'Rigorous vetting, top safety ratings' }, { text: 'Value for money', sub: 'Best quality at the lowest price' }, { text: 'Eco-friendly choices', sub: 'Sustainable materials, ethical brands' }, { text: 'Convenience first', sub: 'Saves time and effort daily' }] }
+];
+
+function nsGoTo(screen) {
+  document.querySelectorAll('.ns-screen').forEach(function(s) { s.classList.remove('active'); });
+  var el = document.getElementById('ns-s' + screen);
+  if (el) { el.classList.add('active'); el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+}
+
+function nsSelectMethod(type) {
+  nsState.method = type;
+  document.querySelectorAll('.ns-method-card').forEach(function(c) { c.classList.remove('ns-method-selected'); });
+  document.getElementById('mc-' + type).classList.add('ns-method-selected');
+  if (type === 'budget') {
+    document.getElementById('ns-budget-reveal').style.display = 'block';
+    document.getElementById('ns-budget-reveal').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  } else {
+    document.getElementById('ns-budget-reveal').style.display = 'none';
+    nsState.step = 0; nsState.answers = {};
+    nsRenderStep();
+    nsGoTo(2);
+  }
+}
+
+function nsSelectTier(label, id) {
+  nsState.budget = label; nsState.budgetId = id;
+  document.querySelectorAll('.ns-tier-btn').forEach(function(b) { b.classList.remove('ns-tier-selected'); });
+  document.getElementById('tier-' + id).classList.add('ns-tier-selected');
+  document.getElementById('ns-budget-btn').className = 'ns-gen-btn ns-gen-ready';
+}
+
+function nsRenderStep() {
+  var step = nsState.step;
+  var q = nsQuestions[step];
+  for (var i = 0; i < 4; i++) {
+    document.getElementById('dot-' + i).className = 'ns-dot' + (i <= step ? ' ns-dot-done' : '');
+  }
+  var h = '<div class="ns-wizard-step"><p class="ns-step-label">' + q.label + '</p><h2 class="ns-step-q">' + q.q + '</h2><p class="ns-step-hint">' + q.hint + '</p><div class="ns-options">';
+  q.options.forEach(function(opt) {
+    var sel = nsState.answers[step] === opt.text ? ' ns-opt-selected' : '';
+    var safeText = opt.text.replace(/\/g, '\\').replace(/'/g, "\'");
+    h += '<button class="ns-opt' + sel + '" onclick="nsPickOption(' + step + ',\'' + safeText + '\')">' + opt.text + '<div class="ns-opt-sub">' + opt.sub + '</div></button>';
+  });
+  h += '</div></div>';
+  document.getElementById('ns-wizard-q').innerHTML = h;
+  var allDone = Object.keys(nsState.answers).length === 4;
+  document.getElementById('ns-guided-btn').className = 'ns-gen-btn ' + (allDone ? 'ns-gen-ready' : 'ns-gen-disabled');
+}
+
+function nsPickOption(step, value) {
+  nsState.answers[step] = value;
+  if (step < 3) { setTimeout(function() { nsState.step = step + 1; nsRenderStep(); }, 250); }
+  else { nsRenderStep(); }
+}
+
+function nsGuidedBack() {
+  if (nsState.step > 0) { nsState.step--; nsRenderStep(); }
+  else { nsGoTo(1); }
+}
+
+async function nsGenerateBudget() {
+  if (!nsState.budget) return;
+  var btn = document.getElementById('ns-budget-btn');
+  btn.className = 'ns-gen-btn ns-gen-loading'; btn.textContent = 'Generating…';
+  await nsCallAPI('Budget: ' + nsState.budget, 'Generate a safety-verified baby registry for a budget of ' + nsState.budget + '.');
+}
+
+async function nsGenerateGuided() {
+  if (Object.keys(nsState.answers).length < 4) return;
+  var btn = document.getElementById('ns-guided-btn');
+  btn.className = 'ns-gen-btn ns-gen-loading'; btn.textContent = 'Building your list…';
+  var a = nsState.answers;
+  var context = 'Sleep: ' + a[0] + ' | Living: ' + a[1] + ' | Feeding: ' + a[2] + ' | Priority: ' + a[3];
+  await nsCallAPI('Personalized — ' + a[3], 'Build a personalized safety-verified baby registry. User profile: ' + context);
+}
+
+async function nsCallAPI(subLabel, userContext) {
+  var prompt = 'You are NestSafely, a calm and judgment-free baby registry advisor. ' + userContext + '. Respond ONLY with valid JSON, no markdown or extra text: {"intro":"2 warm reassuring sentences tailored to their situation","categories":[{"name":"Category","items":[{"name":"Product name","why":"1 sentence on why recommended for them","price":"$XX–$XX","swap":"budget-friendly swap only if truly helpful, else empty string"}]}]}. Include 4-5 categories (Sleep, Feeding, Diapering, Getting Around, Bathing & Care). 3-4 items each. Calm tone, no overwhelm. Return only JSON.';
+  try {
+    var res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ model: 'claude-sonnet-4-6', max_tokens: 2000, messages: [{ role: 'user', content: prompt }] })
+    });
+    var data = await res.json();
+    var raw = data.content[0].text.replace(/```json|```/g, '').trim();
+    var r = JSON.parse(raw);
+    nsRegistryItems = [];
+    r.categories.forEach(function(cat) { cat.items.forEach(function(item) { nsRegistryItems.push(item.name); }); });
+    nsRenderResults(r, subLabel);
+  } catch(e) {
+    alert('Something went wrong — please try again.');
+    document.getElementById('ns-budget-btn') && (document.getElementById('ns-budget-btn').className = 'ns-gen-btn ns-gen-ready');
+    document.getElementById('ns-guided-btn') && (document.getElementById('ns-guided-btn').className = 'ns-gen-btn ns-gen-ready');
+  }
+}
+
+function nsRenderResults(r, sub) {
+  document.getElementById('ns-result-sub').textContent = sub;
+  document.getElementById('ns-result-intro-text').textContent = r.intro;
+  var body = '';
+  r.categories.forEach(function(cat) {
+    body += '<div class="ns-category"><div class="ns-category-title">' + cat.name + '</div>';
+    cat.items.forEach(function(item) {
+      body += '<div class="ns-item"><div class="ns-item-safe">✓</div><div class="ns-item-body"><div class="ns-item-name">' + item.name + '</div><div class="ns-item-why">' + item.why + '</div>';
+      if (item.swap) body += '<div class="ns-item-swap">💡 ' + item.swap + '</div>';
+      body += '</div><div class="ns-item-price">' + item.price + '</div></div>';
+    });
+    body += '</div>';
+  });
+  document.getElementById('ns-result-body').innerHTML = body;
+  document.getElementById('ns-add-input').value = '';
+  nsGoTo(3);
+}
+
+function nsAddItem() {
+  var input = document.getElementById('ns-add-input');
+  var val = input.value.trim();
+  if (!val) return;
+  var duplicate = nsRegistryItems.some(function(item) { return item.toLowerCase() === val.toLowerCase(); });
+  if (duplicate) {
+    nsState.pendingItem = val;
+    document.getElementById('ns-modal').style.display = 'flex';
+  } else {
+    nsConfirmAddItem(val);
+  }
+}
+
+function nsConfirmAdd() {
+  if (nsState.pendingItem) nsConfirmAddItem(nsState.pendingItem);
+  nsDismissModal();
+}
+
+function nsDismissModal() {
+  document.getElementById('ns-modal').style.display = 'none';
+  nsState.pendingItem = null;
+}
+
+function nsConfirmAddItem(name) {
+  nsRegistryItems.push(name);
+  var body = document.getElementById('ns-result-body');
+  var div = document.createElement('div');
+  div.className = 'ns-category';
+  div.innerHTML = '<div class="ns-item"><div class="ns-item-safe">✓</div><div class="ns-item-body"><div class="ns-item-name">' + name + '</div><div class="ns-item-why">Added manually</div></div></div>';
+  var customSection = document.getElementById('ns-custom-section');
+  if (!customSection) {
+    var sec = document.createElement('div');
+    sec.id = 'ns-custom-section';
+    sec.innerHTML = '<div class="ns-category-title">Added by you</div>';
+    body.appendChild(sec);
+    customSection = sec;
+  }
+  var item = document.createElement('div');
+  item.className = 'ns-item';
+  item.innerHTML = '<div class="ns-item-safe">✓</div><div class="ns-item-body"><div class="ns-item-name">' + name + '</div><div class="ns-item-why">Added manually</div></div>';
+  customSection.appendChild(item);
+  document.getElementById('ns-add-input').value = '';
+}
+
+function nsRestart() {
+  nsState = { method: null, budget: null, budgetId: null, answers: {}, step: 0, pendingItem: null };
+  nsRegistryItems = [];
+  document.querySelectorAll('.ns-method-card').forEach(function(c) { c.classList.remove('ns-method-selected'); });
+  document.querySelectorAll('.ns-tier-btn').forEach(function(b) { b.classList.remove('ns-tier-selected'); });
+  document.getElementById('ns-budget-reveal').style.display = 'none';
+  document.getElementById('ns-budget-btn').className = 'ns-gen-btn ns-gen-disabled';
+  document.getElementById('ns-budget-btn').textContent = 'Generate My Registry →';
+  document.getElementById('ns-guided-btn').className = 'ns-gen-btn ns-gen-disabled';
+  document.getElementById('ns-guided-btn').textContent = 'Generate My Registry →';
+  nsGoTo(1);
+}
+// ── END NEST SAFELY ──
+
+
 // PAGE ROUTING
 var VALID_PAGES = ['home','profile','tool','ai','contact','nest'];
 
