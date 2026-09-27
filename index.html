@@ -591,7 +591,7 @@ async function analyzeFinancial(){
     var panel=document.getElementById('f-result');
     panel.classList.add('visible');
     panel.scrollIntoView({behavior:'smooth',block:'nearest'});
-  }catch(e){alert('Something went wrong — please try again.');}
+  }catch(e){alert(e.name==='AbortError'?'Request timed out.':'Error: '+e.message);}
   finally{btn.disabled=false;btn.innerHTML='Analyze this decision →';}
 }
 
@@ -695,7 +695,7 @@ async function nsCallAPI(sub,ctx){
   var allBtns=['ns-budget-btn','ns-guided-btn','ns-import-btn'];
   try{
     var controller=new AbortController();
-    var timeoutId=setTimeout(function(){controller.abort();},20000);
+    var timeoutId=setTimeout(function(){controller.abort();},25000);
     var res=await fetch('/.netlify/functions/proxy',{
       method:'POST',
       signal:controller.signal,
@@ -703,7 +703,7 @@ async function nsCallAPI(sub,ctx){
       body:JSON.stringify({prompt:prompt})
     });
     clearTimeout(timeoutId);
-    if(!res.ok){throw new Error('Server error: '+res.status);}
+    if(!res.ok){throw new Error('Server error '+res.status);}
     var data=await res.json();
     if(data.error){throw new Error(data.error);}
     var text=data.text.replace(/```json|```/g,'').trim();
@@ -714,7 +714,7 @@ async function nsCallAPI(sub,ctx){
     nsRenderResults(r,sub);
   }catch(e){
     console.error('NestSafely API error:',e);
-    var msg=e.name==='AbortError'?'Request timed out — please try again.':'Something went wrong — please try again.';
+    var msg=e.name==='AbortError'?'Request timed out — check your internet and try again.':('Error: '+e.message);
     alert(msg);
     allBtns.forEach(function(id){
       var el=document.getElementById(id);
