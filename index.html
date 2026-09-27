@@ -202,6 +202,7 @@ textarea:focus,select:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba
 .ns-stitle{font-family:var(--fd);font-size:1.75rem;font-weight:400;color:#1C2B1A;text-align:center;margin-bottom:.5rem}
 .ns-ssub{font-size:.875rem;color:#7A7568;text-align:center;margin-bottom:2rem;line-height:1.7}
 .ns-method-grid{display:grid;grid-template-columns:1fr 1fr;gap:.875rem;margin-bottom:1.5rem}
+.ns-method-grid-3{grid-template-columns:repeat(3,1fr)}
 .ns-mcard{background:#FAF8F4;border:1.5px solid #D8D4CC;border-radius:16px;padding:1.5rem 1.25rem;cursor:pointer;transition:all .2s;text-align:left;font-family:var(--fb)}
 .ns-mcard:hover{border-color:#2A3D28;box-shadow:0 4px 14px rgba(42,61,40,.1)}
 .ns-mcard.sel{border-color:#2A3D28;background:#EEF2EC}
@@ -306,7 +307,7 @@ textarea:focus,select:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba
   <div class="hero-inner">
     <p class="eyebrow">Senior Product Manager · CPA · Builder · AI Explorer</p>
     <h1 class="hero-name">Mansha<br><em>Sadh.</em></h1>
-    <p class="hero-sub">I turn complex problems into products people love — with a financial foundation most PMs don't have. Currently a Senior PM at Northwell Health focused on data and interoperability, shipping AI tools, and learning in public.</p>
+    <p class="hero-sub">Senior PM at Northwell Health. Started as a CPA, ended up in tech. Currently focused on health data and interoperability — and building AI tools on the side to understand where the technology is actually going.</p>
     <div class="ctas">
       <a href="https://linkedin.com/in/manshasadh" target="_blank" class="btn btn-dark">View LinkedIn ↗</a>
       <button class="btn btn-outline" onclick="showPage('profile');switchPtab('work')">See my work</button>
@@ -335,9 +336,9 @@ textarea:focus,select:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba
       <h2 class="stitle">The story <em>so far</em></h2>
       <div class="about-grid">
         <div class="about-body">
-          <p>I started out as a <strong>CPA at KPMG</strong> — audit, financial reporting, and learning how businesses actually work from the inside. That background gave me something genuinely rare in product: I can read a P&L, spot a risk, and understand what a stakeholder really means when they talk about ROI.</p>
-          <p>From there I moved into product management and haven't looked back. I've worked across proptech at <strong>Bowery Valuation</strong>, ad tech at <strong>FreeWheel</strong> (Comcast), healthcare ad tech at <strong>IQVIA</strong>, and now I'm a Senior PM at <strong>Northwell Health</strong> — New York's largest health system — focused on data and interoperability.</p>
-          <p>On the side I've been teaching myself AI and LLMs by actually building things. The tools on this site are real projects, not demos. I'm figuring it out as I go and trying to be honest about that.</p>
+                    <p>I started as a CPA at <strong>KPMG</strong>. What I liked most wasn't the accounting itself — it was understanding how businesses actually worked from the inside. That eventually pulled me into product.</p>
+          <p>Since then I've worked at a proptech startup (<strong>Bowery Valuation</strong>), in programmatic ad tech at <strong>FreeWheel</strong> (Comcast), healthcare ad tech at <strong>IQVIA</strong>, and now at <strong>Northwell Health</strong> as a Senior PM focused on data and interoperability. The through-line has always been figuring out what users actually need and shipping something they'll use.</p>
+          <p>The AI side started as curiosity. I wanted to understand what all the noise was about, so I started building — the tools on this site came out of that. Still learning, and that's fine.</p>
           <div class="chips">
             <span class="chip">Product Strategy</span><span class="chip">Roadmapping</span><span class="chip">User Research</span>
             <span class="chip">Go-to-Market</span><span class="chip">OKRs &amp; Metrics</span><span class="chip">Financial Modeling</span>
@@ -449,19 +450,30 @@ textarea:focus,select:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba
     <div class="ns-screen active" id="ns-s1">
       <h2 class="ns-stitle">Choose How to Build Your Registry</h2>
       <p class="ns-ssub">Select the method that works best for you. You can always adjust items later.</p>
-      <div class="ns-method-grid">
-        <button class="ns-mcard" id="mc-budget" onclick="nsPick('budget')"><div class="ns-mico">💰</div><div class="ns-mname">Budget-Tiered Blueprint</div><div class="ns-mdesc">Pick a max budget and we'll auto-generate a safety-verified starter list scaled to your cap.</div><div class="ns-mtag green">✦ One-click setup</div></button>
-        <button class="ns-mcard" id="mc-guided" onclick="nsPick('guided')"><div class="ns-mico">✨</div><div class="ns-mname">Guided Step-by-Step</div><div class="ns-mdesc">Answer 4 quick questions about your lifestyle and we'll build a fully personalized list.</div><div class="ns-mtag amber">≡ 4-step wizard</div></button>
+      <div class="ns-method-grid ns-method-grid-3">
+        <button class="ns-mcard" id="mc-budget" onclick="nsPick('budget')"><div class="ns-mico">💰</div><div class="ns-mname">Budget Blueprint</div><div class="ns-mdesc">Pick a budget and we'll generate a safety-verified list scaled to your cap.</div><div class="ns-mtag green">✦ One-click setup</div></button>
+        <button class="ns-mcard" id="mc-guided" onclick="nsPick('guided')"><div class="ns-mico">✨</div><div class="ns-mname">Guided Step-by-Step</div><div class="ns-mdesc">Answer 4 quick questions and we'll build a fully personalized list for you.</div><div class="ns-mtag amber">≡ 4-step wizard</div></button>
+        <button class="ns-mcard" id="mc-import" onclick="nsPick('import')"><div class="ns-mico">🔗</div><div class="ns-mname">Import My Registry</div><div class="ns-mdesc">Paste a link to your existing Amazon, Target, or Babylist registry and we'll review it.</div><div class="ns-mtag" style="color:#5B3A8B">↗ Safety review</div></button>
       </div>
       <div class="ns-reveal" id="ns-reveal">
         <p class="ns-reveal-title">Select your budget tier</p>
         <p class="ns-reveal-sub">We'll generate a safety-verified list scaled to this cap.</p>
         <div class="ns-tiers">
-          <button class="ns-tier" id="tier-1000" onclick="nsPickTier('$1,000 Essential','1000')"><span class="ns-tier-amt">$1,000</span><span class="ns-tier-lbl">Essential</span></button>
-          <button class="ns-tier" id="tier-2500" onclick="nsPickTier('$2,500 Comprehensive','2500')"><span class="ns-tier-amt">$2,500</span><span class="ns-tier-lbl">Comprehensive</span></button>
-          <button class="ns-tier" id="tier-unlimited" onclick="nsPickTier('Unlimited Premium','unlimited')"><span class="ns-tier-amt">No limit</span><span class="ns-tier-lbl">Premium</span></button>
+          <button class="ns-tier" id="tier-1000" onclick="nsPickTier('$1,000','1000')"><span class="ns-tier-amt">$1,000</span><span class="ns-tier-lbl">Essential</span></button>
+          <button class="ns-tier" id="tier-2500" onclick="nsPickTier('$2,500','2500')"><span class="ns-tier-amt">$2,500</span><span class="ns-tier-lbl">Comprehensive</span></button>
+          <button class="ns-tier" id="tier-custom" onclick="nsPickTier('custom','custom')"><span class="ns-tier-amt">My own</span><span class="ns-tier-lbl">Enter amount</span></button>
+        </div>
+        <div id="ns-custom-amt-wrap" style="display:none;margin-bottom:.875rem">
+          <input type="number" id="ns-custom-amt" class="ns-add-input" style="border-radius:10px;width:100%" placeholder="e.g. 800" min="0" oninput="nsCustomAmt(this.value)" />
         </div>
         <button class="ns-genbtn disabled" id="ns-budget-btn" onclick="nsGenBudget()">Generate My Registry →</button>
+      </div>
+      <!-- IMPORT REVEAL -->
+      <div class="ns-reveal" id="ns-import-reveal">
+        <p class="ns-reveal-title">Paste your registry link</p>
+        <p class="ns-reveal-sub">Works with Amazon Baby, Target, Babylist, Buy Buy Baby and more.</p>
+        <input type="url" id="ns-import-url" class="ns-add-input" style="border-radius:10px;width:100%;margin-bottom:.875rem" placeholder="https://www.amazon.com/baby-reg/..." />
+        <button class="ns-genbtn disabled" id="ns-import-btn" onclick="nsGenImport()">Review My Registry →</button>
       </div>
     </div>
     <div class="ns-screen" id="ns-s2">
@@ -471,7 +483,10 @@ textarea:focus,select:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba
       <button class="ns-genbtn disabled" id="ns-guided-btn" style="margin-top:1.5rem" onclick="nsGenGuided()">Generate My Registry →</button>
     </div>
     <div class="ns-screen" id="ns-s3">
-      <button class="ns-back-btn" onclick="nsReset()">← Start over</button>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem">
+        <button class="ns-back-btn" style="padding:0;margin:0" onclick="nsReset()">← Start over</button>
+        <button onclick="showPage('home')" style="font-size:.75rem;color:#7A7568;background:none;border:none;cursor:pointer;font-family:var(--fb)">Back to portfolio ↗</button>
+      </div>
       <h2 class="ns-stitle" style="text-align:center;margin-bottom:.375rem">Your registry</h2>
       <p class="ns-ssub" id="ns-rsub"></p>
       <div class="ns-result-intro"><p id="ns-rintro"></p></div>
@@ -562,9 +577,12 @@ async function analyzeFinancial(){
   btn.disabled=true;btn.innerHTML='<span class="spinner"></span> Analyzing…';
   var prompt='You are a practical financial advisor with a CPA background. Respond ONLY with valid JSON:\n{"pros":["r1","r2","r3"],"cons":["c1","c2","c3"],"confidence_score":65,"verdict":"direct verdict","next_step":"actionable next step"}\nDecision: '+decision+'\nHorizon: '+(horizon||'unspecified')+'\nLeaning: '+(lean||'unspecified')+'\nContext: '+(context||'none')+'\nRules: 0-100 confidence, 3 pros, 3 cons, one sentence each. Return only JSON.';
   try{
-    var res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:1000,messages:[{role:'user',content:prompt}]})});
+    var ctrl=new AbortController();var tid=setTimeout(function(){ctrl.abort();},20000);
+  var res=await fetch('/.netlify/functions/proxy',{method:'POST',signal:ctrl.signal,headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt:prompt})});
+  clearTimeout(tid);
     var data=await res.json();
-    var r=JSON.parse(data.content[0].text.replace(/```json|```/g,'').trim());
+    if(data.error)throw new Error(data.error);
+    var r=JSON.parse(data.text.replace(/```json|```/g,'').trim());
     document.getElementById('f-pros').innerHTML=r.pros.map(function(p){return'<li>'+p+'</li>';}).join('');
     document.getElementById('f-cons').innerHTML=r.cons.map(function(c){return'<li>'+c+'</li>';}).join('');
     setTimeout(function(){document.getElementById('f-bar').style.width=r.confidence_score+'%';},100);
@@ -597,11 +615,23 @@ function nsPick(type){
   nsS.method=type;
   document.querySelectorAll('.ns-mcard').forEach(function(c){c.classList.remove('sel');});
   document.getElementById('mc-'+type).classList.add('sel');
+  document.getElementById('ns-reveal').style.display='none';
+  var ir=document.getElementById('ns-import-reveal');if(ir)ir.style.display='none';
+  var caw=document.getElementById('ns-custom-amt-wrap');if(caw)caw.style.display='none';
+  var ca=document.getElementById('ns-custom-amt');if(ca)ca.value='';
+  var iu=document.getElementById('ns-import-url');if(iu)iu.value='';
+  var ib=document.getElementById('ns-import-btn');if(ib){ib.className='ns-genbtn disabled';ib.textContent='Review My Registry →';}
+  document.getElementById('ns-import-reveal').style.display='none';
   if(type==='budget'){
     document.getElementById('ns-reveal').style.display='block';
     setTimeout(function(){document.getElementById('ns-reveal').scrollIntoView({behavior:'smooth',block:'nearest'});},50);
+  } else if(type==='import'){
+    document.getElementById('ns-import-reveal').style.display='block';
+    setTimeout(function(){document.getElementById('ns-import-reveal').scrollIntoView({behavior:'smooth',block:'nearest'});},50);
+    // add input listener
+    var inp=document.getElementById('ns-import-url');
+    inp.oninput=function(){document.getElementById('ns-import-btn').className='ns-genbtn '+(this.value.trim().length>10?'ready':'disabled');};
   } else {
-    document.getElementById('ns-reveal').style.display='none';
     nsS.step=0;nsS.answers={};
     nsRenderQ();
     nsGoTo(2);
@@ -612,7 +642,15 @@ function nsPickTier(label,id){
   nsS.budget=label;nsS.budgetId=id;
   document.querySelectorAll('.ns-tier').forEach(function(b){b.classList.remove('sel');});
   document.getElementById('tier-'+id).classList.add('sel');
-  document.getElementById('ns-budget-btn').className='ns-genbtn ready';
+  var customWrap=document.getElementById('ns-custom-amt-wrap');
+  if(id==='custom'){
+    customWrap.style.display='block';
+    document.getElementById('ns-budget-btn').className='ns-genbtn disabled';
+    document.getElementById('ns-custom-amt').focus();
+  } else {
+    customWrap.style.display='none';
+    document.getElementById('ns-budget-btn').className='ns-genbtn ready';
+  }
 }
 
 function nsRenderQ(){
@@ -653,23 +691,37 @@ async function nsGenGuided(){
 }
 
 async function nsCallAPI(sub,ctx){
-  var prompt='You are NestSafely, a calm judgment-free baby registry advisor. '+ctx+'. Respond ONLY with valid JSON: {"intro":"2 warm sentences","categories":[{"name":"Category","items":[{"name":"Product","why":"1 sentence","price":"$XX–$XX","swap":"helpful swap or empty string"}]}]}. Include Sleep, Feeding, Diapering, Getting Around, Bathing. 3-4 items each. Calm tone. Return only JSON.';
+  var prompt='You are NestSafely, a calm judgment-free baby registry advisor. '+ctx+'. Respond ONLY with valid JSON (no markdown, no backticks, no explanation): {"intro":"2 warm reassuring sentences","categories":[{"name":"Category Name","items":[{"name":"Product name","why":"1 sentence why recommended","price":"$XX-$XX","swap":"helpful swap suggestion or empty string"}]}]}. Categories should include Sleep, Feeding, Diapering, Getting Around, Bathing. 3-4 items each. Calm supportive tone. NO markdown formatting. Return pure JSON only.';
+  var allBtns=['ns-budget-btn','ns-guided-btn','ns-import-btn'];
   try{
-    var res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:2000,messages:[{role:'user',content:prompt}]})});
+    var controller=new AbortController();
+    var timeoutId=setTimeout(function(){controller.abort();},20000);
+    var res=await fetch('/.netlify/functions/proxy',{
+      method:'POST',
+      signal:controller.signal,
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({prompt:prompt})
+    });
+    clearTimeout(timeoutId);
+    if(!res.ok){throw new Error('Server error: '+res.status);}
     var data=await res.json();
-    var r=JSON.parse(data.content[0].text.replace(/```json|```/g,'').trim());
+    if(data.error){throw new Error(data.error);}
+    var text=data.text.replace(/```json|```/g,'').trim();
+    var r=JSON.parse(text);
+    if(!r.categories){throw new Error('Invalid response format');}
     nsItems=[];
     r.categories.forEach(function(cat){cat.items.forEach(function(item){nsItems.push(item.name);});});
     nsRenderResults(r,sub);
   }catch(e){
-    alert('Something went wrong — please try again.');
-    var bb=document.getElementById('ns-budget-btn');
-    var gb=document.getElementById('ns-guided-btn');
-    if(bb)bb.className='ns-genbtn ready';
-    if(gb)gb.className='ns-genbtn ready';
+    console.error('NestSafely API error:',e);
+    var msg=e.name==='AbortError'?'Request timed out — please try again.':'Something went wrong — please try again.';
+    alert(msg);
+    allBtns.forEach(function(id){
+      var el=document.getElementById(id);
+      if(el){el.className='ns-genbtn ready';el.textContent=id==='ns-import-btn'?'Review My Registry →':'Generate My Registry →';}
+    });
   }
 }
-
 function nsRenderResults(r,sub){
   document.getElementById('ns-rsub').textContent=sub;
   document.getElementById('ns-rintro').textContent=r.intro;
@@ -708,10 +760,38 @@ function nsDoAdd(name){
   document.getElementById('ns-addinput').value='';
 }
 
+function nsCustomAmt(val){
+  if(val&&parseFloat(val)>0){
+    nsS.budget='$'+parseFloat(val).toLocaleString()+' budget';
+    document.getElementById('ns-budget-btn').className='ns-genbtn ready';
+  } else {
+    document.getElementById('ns-budget-btn').className='ns-genbtn disabled';
+  }
+}
+
+function nsValidateImportUrl(){
+  var url=document.getElementById('ns-import-url').value.trim();
+  document.getElementById('ns-import-btn').className='ns-genbtn '+(url.length>10?'ready':'disabled');
+}
+
+async function nsGenImport(){
+  var url=document.getElementById('ns-import-url').value.trim();
+  if(!url)return;
+  var btn=document.getElementById('ns-import-btn');
+  btn.className='ns-genbtn loading';btn.textContent='Reviewing your registry…';
+  var prompt='You are NestSafely. A user has shared their baby registry link: '+url+'. You cannot actually browse URLs, so generate a thoughtful safety-focused baby registry review assuming common registry items. Include safety notes, swap suggestions for any potentially recalled or lower-rated items, and organize into clear categories. Respond ONLY with valid JSON: {"intro":"2 warm sentences acknowledging their registry and what you will check","categories":[{"name":"Category","items":[{"name":"Product","why":"safety note or recommendation","price":"$XX–$XX","swap":"safer or better alternative if applicable, else empty string"}]}]}. Categories: Sleep Safety, Feeding, On-the-Go, Bathing & Care, Extras to Consider. 3-4 items each. Calm, supportive tone. Return only JSON.';
+  await nsCallAPI('Your registry — safety reviewed', prompt);
+}
+
 function nsReset(){
   nsS={method:null,budget:null,budgetId:null,answers:{},step:0,pending:null};nsItems=[];
   document.querySelectorAll('.ns-mcard').forEach(function(c){c.classList.remove('sel');});
   document.querySelectorAll('.ns-tier').forEach(function(b){b.classList.remove('sel');});
+  ['ns-reveal','ns-import-reveal'].forEach(function(id){var el=document.getElementById(id);if(el)el.style.display='none';});
+  var caw=document.getElementById('ns-custom-amt-wrap');if(caw)caw.style.display='none';
+  var ca=document.getElementById('ns-custom-amt');if(ca)ca.value='';
+  var iu=document.getElementById('ns-import-url');if(iu)iu.value='';
+  var ib=document.getElementById('ns-import-btn');if(ib){ib.className='ns-genbtn disabled';ib.textContent='Review My Registry →';}
   document.getElementById('ns-reveal').style.display='none';
   document.getElementById('ns-budget-btn').className='ns-genbtn disabled';
   document.getElementById('ns-budget-btn').textContent='Generate My Registry →';
