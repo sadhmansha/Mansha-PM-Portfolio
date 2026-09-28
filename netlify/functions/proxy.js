@@ -1,5 +1,4 @@
 // netlify/functions/proxy.js
-// Uses Node's built-in https module — no dependencies needed
 
 const https = require('https');
 
@@ -21,7 +20,7 @@ exports.handler = async function(event) {
     return {
       statusCode: 500,
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ error: 'GEMINI_API_KEY is not set in Netlify environment variables' })
+      body: JSON.stringify({ error: 'GEMINI_API_KEY not set in Netlify environment variables' })
     };
   }
 
@@ -34,7 +33,7 @@ exports.handler = async function(event) {
 
   const prompt = body.prompt;
   if (!prompt) {
-    return { statusCode: 400, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ error: 'No prompt in request' }) };
+    return { statusCode: 400, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ error: 'No prompt provided' }) };
   }
 
   const postData = JSON.stringify({
@@ -42,17 +41,29 @@ exports.handler = async function(event) {
     generationConfig: { temperature: 0.7, maxOutputTokens: 2000 }
   });
 
-  const path = '/v1beta/models/gemini-1.5-flash:generateContent?key=' + apiKey;
+  // Support both old (AIza) and new (AQ.) key formats
+  // Old format: key goes in URL query string
+  // New format: key goes in x-goog-api-key header
+  const useHeader = !apiKey.startsWith('AIza');
+  const path = '/v1beta/models/gemini-1.5-flash:generateContent' + (useHeader ? '' : '?key=' + apiKey);
+
+  const requestHeaders = {
+    'Content-Type': 'application/json',
+    'Content-Length': Buffer.byteLength(postData)
+  };
+
+  if (useHeader) {
+    requestHeaders['x-goog-api-key'] = apiKey;
+    // Also try Authorization header for OAuth-style tokens
+    requestHeaders['Authorization'] = 'Bearer ' + apiKey;
+  }
 
   return new Promise((resolve) => {
     const options = {
       hostname: 'generativelanguage.googleapis.com',
       path: path,
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Content-Length': Buffer.byteLength(postData)
-      }
+      headers: requestHeaders
     };
 
     const req = https.request(options, (res) => {
@@ -61,33 +72,37 @@ exports.handler = async function(event) {
       res.on('end', () => {
         try {
           const parsed = JSON.parse(data);
+
           if (parsed.error) {
             resolve({
               statusCode: 400,
               headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ error: 'Gemini error: ' + parsed.error.message })
+              body: JSON.stringify({ error: 'Gemini API error: ' + parsed.error.message + ' (status: ' + parsed.error.code + ')' })
             });
             return;
           }
+
           if (!parsed.candidates || !parsed.candidates[0]) {
             resolve({
               statusCode: 500,
               headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ error: 'No response from Gemini. Raw: ' + data.substring(0, 200) })
+              body: JSON.stringify({ error: 'No response from Gemini. Raw: ' + data.substring(0, 300) })
             });
             return;
           }
+
           const text = parsed.candidates[0].content.parts[0].text;
           resolve({
             statusCode: 200,
             headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
             body: JSON.stringify({ text: text })
           });
+
         } catch(e) {
           resolve({
             statusCode: 500,
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ error: 'Parse error: ' + e.message + ' Raw: ' + data.substring(0, 200) })
+            body: JSON.stringify({ error: 'Parse error: ' + e.message + '. Raw response: ' + data.substring(0, 300) })
           });
         }
       });
@@ -97,7 +112,7 @@ exports.handler = async function(event) {
       resolve({
         statusCode: 500,
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ error: 'HTTPS request failed: ' + e.message })
+        body: JSON.stringify({ error: 'Network error: ' + e.message })
       });
     });
 
@@ -106,7 +121,7 @@ exports.handler = async function(event) {
       resolve({
         statusCode: 504,
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ error: 'Request timed out' })
+        body: JSON.stringify({ error: 'Request timed out after 25 seconds' })
       });
     });
 
